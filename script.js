@@ -1,13 +1,14 @@
-// create an array of 5 promises that resolve with a random time between 1 and 5 seconds
-const promises = Array.from({ length: 5 }, () => {
+window.promises = [];
+
+for (let i = 0; i < 5; i++) {
   const randomTime = Math.floor(Math.random() * 5) + 1;
-  return new Promise(resolve => {
+  const promise = new Promise(resolve => {
     setTimeout(() => resolve(randomTime), randomTime * 1000);
   });
-});
+  window.promises.push(promise);
+}
 
-// use Promise.any to wait for the first promise to resolve, and print its result to the output div
-Promise.any(promises)
+Promise.any(window.promises)
   .then(result => {
     const outputDiv = document.getElementById('output');
     outputDiv.innerText = `The first promise resolved with result: ${result}`;
