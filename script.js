@@ -10,7 +10,9 @@ for (let i = 0; i < 5; i++) {
 
 Promise.any(window.promises)
   .then(result => {
-    const outputDiv = document.getElementById('output');
-    outputDiv.innerText = `The first promise resolved with result: ${result}`;
+    const output = document.getElementById('output');
+    output.innerText = `The first promise resolved with result: ${result}`;
   })
-  .catch(error => console.error(error));
+  .catch(error => {
+    console.error(error);
+  });
